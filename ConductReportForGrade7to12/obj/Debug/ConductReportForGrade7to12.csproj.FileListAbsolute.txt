@@ -1,0 +1,8 @@
+D:\GitHub2\ConductReportForGrade7to12\ConductReportForGrade7to12\obj\Debug\ConductReportForGrade7to12.csprojResolveAssemblyReference.cache
+D:\GitHub2\ConductReportForGrade7to12\ConductReportForGrade7to12\obj\Debug\ConductReportForGrade7to12.Properties.Resources.resources
+D:\GitHub2\ConductReportForGrade7to12\ConductReportForGrade7to12\obj\Debug\ConductReportForGrade7to12.Reporter.resources
+D:\GitHub2\ConductReportForGrade7to12\ConductReportForGrade7to12\obj\Debug\ConductReportForGrade7to12.csproj.GenerateResource.Cache
+D:\GitHub2\ConductReportForGrade7to12\ConductReportForGrade7to12\bin\Debug\ConductReportForGrade7to12.dll
+D:\GitHub2\ConductReportForGrade7to12\ConductReportForGrade7to12\bin\Debug\ConductReportForGrade7to12.pdb
+D:\GitHub2\ConductReportForGrade7to12\ConductReportForGrade7to12\obj\Debug\ConductReportForGrade7to12.dll
+D:\GitHub2\ConductReportForGrade7to12\ConductReportForGrade7to12\obj\Debug\ConductReportForGrade7to12.pdb
