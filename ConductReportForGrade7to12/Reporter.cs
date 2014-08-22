@@ -152,7 +152,7 @@ namespace ConductReportForGrade7to12
                 mergeDic.Add("姓名", obj.Student.Name);
                 mergeDic.Add("班級", obj.Class.Name);
                 mergeDic.Add("座號", obj.Student.SeatNo + "");
-                mergeDic.Add("學年度", _schoolYear + 1911 + "");
+                mergeDic.Add("學年度", (_schoolYear + 1911) + "-" + (_schoolYear + 1912));
                 mergeDic.Add("學期", _semester == 1 ? _semester + "st" : _semester + "nd");
                 mergeDic.Add("班導師", student_class_teacher.ContainsKey(obj.StudentID) ? student_class_teacher[obj.StudentID] : "");
                 mergeDic.Add("校長", _校長);
