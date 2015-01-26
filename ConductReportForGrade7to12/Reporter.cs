@@ -32,7 +32,7 @@ namespace ConductReportForGrade7to12
             InitializeComponent();
             _A = new AccessHelper();
             _ids = ids;
-            _hrt_template = new Dictionary<string, List<string>>();
+            //_hrt_template = new Dictionary<string, List<string>>();
             _校長 = K12.Data.School.Configuration["學校資訊"].PreviousData.SelectSingleNode("ChancellorChineseName").InnerText;
             _主任 = K12.Data.School.Configuration["學校資訊"].PreviousData.SelectSingleNode("EduDirectorName").InnerText;
 
@@ -52,36 +52,36 @@ namespace ConductReportForGrade7to12
             cboSchoolYear.Text = _schoolYear + "";
             cboSemester.Text = _semester + "";
 
-            LoadTemplate();
+            //LoadTemplate();
         }
 
-        private void LoadTemplate()
-        {
-            List<ConductSetting> list = _A.Select<ConductSetting>("grade=12");
-            if (list.Count > 0)
-            {
-                ConductSetting setting = list[0];
+        //private void LoadTemplate()
+        //{
+        //    List<ConductSetting> list = _A.Select<ConductSetting>("grade=12");
+        //    if (list.Count > 0)
+        //    {
+        //        ConductSetting setting = list[0];
 
-                XmlDocument xdoc = new XmlDocument();
-                if (!string.IsNullOrWhiteSpace(setting.Conduct))
-                    xdoc.LoadXml(setting.Conduct);
+        //        XmlDocument xdoc = new XmlDocument();
+        //        if (!string.IsNullOrWhiteSpace(setting.Conduct))
+        //            xdoc.LoadXml(setting.Conduct);
 
-                foreach (XmlElement elem in xdoc.SelectNodes("//Conduct[@Common]"))
-                {
-                    string group = elem.GetAttribute("Group");
+        //        foreach (XmlElement elem in xdoc.SelectNodes("//Conduct[@Common]"))
+        //        {
+        //            string group = elem.GetAttribute("Group");
 
-                    foreach (XmlElement item in elem.SelectNodes("Item"))
-                    {
-                        string title = item.GetAttribute("Title");
+        //            foreach (XmlElement item in elem.SelectNodes("Item"))
+        //            {
+        //                string title = item.GetAttribute("Title");
 
-                            if (!_hrt_template.ContainsKey(group))
-                                _hrt_template.Add(group, new List<string>());
+        //                    if (!_hrt_template.ContainsKey(group))
+        //                        _hrt_template.Add(group, new List<string>());
 
-                            _hrt_template[group].Add(title);
-                    }
-                }
-            }
-        }
+        //                    _hrt_template[group].Add(title);
+        //            }
+        //        }
+        //    }
+        //}
 
         private void BW_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -137,11 +137,11 @@ namespace ConductReportForGrade7to12
             }
 
             //排序tempalte的item
-            foreach (string group in _hrt_template.Keys)
-                _hrt_template[group].Sort(delegate(string x, string y)
-                {
-                    return x.Length.CompareTo(y.Length);
-                });
+            //foreach (string group in _hrt_template.Keys)
+            //    _hrt_template[group].Sort(delegate(string x, string y)
+            //    {
+            //        return x.Length.CompareTo(y.Length);
+            //    });
 
             //開始列印
             Document doc = new Document();
@@ -170,6 +170,15 @@ namespace ConductReportForGrade7to12
                 //不應該會爆炸
                 ConductObj obj = student_conduct[student_id];
 
+                _hrt_template = obj.HrtTemplate;
+
+                //排序tempalte的item
+                foreach (string group in _hrt_template.Keys)
+                    _hrt_template[group].Sort(delegate(string x, string y)
+                    {
+                        return x.Length.CompareTo(y.Length);
+                    });
+
                 Dictionary<string, string> mergeDic = new Dictionary<string, string>();
                 mergeDic.Add("姓名", obj.Student.Name);
                 mergeDic.Add("班級", obj.Class.Name);
@@ -191,8 +200,8 @@ namespace ConductReportForGrade7to12
                     bu.Font.Bold = true;
                     bu.Font.Italic = true;
                     bu.Writeln(group);
-                    
-                    foreach(string item in _hrt_template[group])
+
+                    foreach (string item in _hrt_template[group])
                     {
                         string key = group + "_" + item;
 
@@ -243,6 +252,8 @@ namespace ConductReportForGrade7to12
             public StudentRecord Student;
             public ClassRecord Class;
 
+            public Dictionary<string, List<string>> HrtTemplate = new Dictionary<string, List<string>>();
+
             public ConductObj(ConductRecord record)
             {
                 StudentID = record.RefStudentId + "";
@@ -284,6 +295,12 @@ namespace ConductReportForGrade7to12
 
                         if (!ConductGrade.ContainsKey(group + "_" + title))
                             ConductGrade.Add(group + "_" + title, grade);
+
+                        if (!HrtTemplate.ContainsKey(group))
+                            HrtTemplate.Add(group, new List<string>());
+
+                        if (!HrtTemplate[group].Contains(title))
+                            HrtTemplate[group].Add(title);
                     }
                 }
             }
