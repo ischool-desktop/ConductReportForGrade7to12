@@ -13,8 +13,8 @@ namespace ConductReportForGrade7to12
         public static void main()
         {
             FISCA.Presentation.RibbonBarItem item1 = FISCA.Presentation.MotherForm.RibbonBarItems["學生", "資料統計"];
-            item1["報表"]["成績相關報表"]["ConductGradeReport(for Grade 7-12)"].Enable = false;
-            item1["報表"]["成績相關報表"]["ConductGradeReport(for Grade 7-12)"].Click += delegate
+            item1["報表"]["成績相關報表"]["ConductGradeReport(for Gr.7-12; 2014年以前適用)"].Enable = false;
+            item1["報表"]["成績相關報表"]["ConductGradeReport(for Gr.7-12; 2014年以前適用)"].Click += delegate
             {
                 new Reporter(K12.Presentation.NLDPanels.Student.SelectedSource).ShowDialog();
             };
@@ -23,17 +23,17 @@ namespace ConductReportForGrade7to12
             {
                 if (K12.Presentation.NLDPanels.Student.SelectedSource.Count > 0 && Permissions.ConductGradeReport權限)
                 {
-                    item1["報表"]["成績相關報表"]["ConductGradeReport(for Grade 7-12)"].Enable = true;
+                    item1["報表"]["成績相關報表"]["ConductGradeReport(for Gr.7-12; 2014年以前適用)"].Enable = true;
                 }
                 else
                 {
-                    item1["報表"]["成績相關報表"]["ConductGradeReport(for Grade 7-12)"].Enable = false;
+                    item1["報表"]["成績相關報表"]["ConductGradeReport(for Gr.7-12; 2014年以前適用)"].Enable = false;
                 }
             };
 
             //權限設定
             Catalog permission = RoleAclSource.Instance["學生"]["功能按鈕"];
-            permission.Add(new RibbonFeature(Permissions.ConductGradeReport, "ConductGradeReport(for Grade 7-12)"));
+            permission.Add(new RibbonFeature(Permissions.ConductGradeReport, "ConductGradeReport(for Gr.7-12; 2014年以前適用)"));
         }
     }
 }
