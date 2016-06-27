@@ -110,6 +110,20 @@
   <ItemGroup>
     <None Include="Resources\template.doc" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="library\Aspose.Words_201402.dll" />
+    <Content Include="library\CourseGradeB.dll" />
+    <Content Include="library\CourseGradeB.pdb" />
+    <Content Include="library\DevComponents.DotNetBar2.dll" />
+    <Content Include="library\FISCA.Data.dll" />
+    <Content Include="library\FISCA.dll" />
+    <Content Include="library\FISCA.Permission.dll" />
+    <Content Include="library\FISCA.Presentation.dll" />
+    <Content Include="library\FISCA.UDT.dll" />
+    <Content Include="library\K12.Data.dll" />
+    <Content Include="library\K12.Data.pdb" />
+    <Content Include="library\K12.Presentation.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
